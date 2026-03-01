@@ -2,6 +2,8 @@ import { state } from './state.js';
 import { parseRoute, onRouteChange } from './router.js';
 import { loadWardrobe } from './wardrobe.js';
 import { showScreen } from './ui.js';
+import { loadMyAvatar } from './screens/avatareditor.js';
+import { initStarterPack } from './packs.js';
 
 const screens = {};
 
@@ -26,8 +28,15 @@ async function initApp() {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   }
 
+  // Load avatar from localStorage
+  const saved = loadMyAvatar();
+  Object.assign(state.myAvatar, saved);
+
   // Load wardrobe from localStorage
   loadWardrobe();
+
+  // Seed starter pack if needed
+  initStarterPack();
 
   // Parse initial route
   const route = parseRoute();

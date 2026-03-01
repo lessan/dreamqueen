@@ -1,4 +1,5 @@
 import { state } from './state.js';
+import { saveMyAvatar } from './screens/avatareditor.js';
 
 const STORAGE_KEY = 'dq_wardrobe';
 
@@ -30,4 +31,18 @@ export function removeItem(id) {
 export function getItems(category) {
   if (!category) return state.myWardrobe;
   return state.myWardrobe.filter((item) => item.category === category);
+}
+
+export function equipItem(item) {
+  state.myAvatar.equipped[item.category] = item;
+  saveMyAvatar(state.myAvatar);
+}
+
+export function unequipItem(category) {
+  state.myAvatar.equipped[category] = null;
+  saveMyAvatar(state.myAvatar);
+}
+
+export function getEquipped() {
+  return state.myAvatar.equipped;
 }

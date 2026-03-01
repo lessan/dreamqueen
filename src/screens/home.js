@@ -28,6 +28,7 @@ export function init(container) {
           <button class="btn btn--secondary" id="btn-join">Join</button>
         </div>
         <button class="btn btn--secondary" id="btn-gallery" style="background:transparent;border:1px solid var(--color-secondary);">Browse Gallery</button>
+        <button class="btn btn--primary" id="btn-dressing" style="font-size:17px;padding:14px 24px;background:var(--color-accent);color:#000;">Enter Dressing Room</button>
         <button id="btn-avatar" style="
           background:none;border:none;color:var(--color-accent);font-size:15px;cursor:pointer;
           padding:8px 0;text-decoration:underline;text-underline-offset:3px;
@@ -56,6 +57,10 @@ export function init(container) {
 
   document.getElementById('btn-gallery').addEventListener('click', () => {
     navigateTo('gallery');
+  });
+
+  document.getElementById('btn-dressing').addEventListener('click', () => {
+    navigateTo('dressingroom');
   });
 
   document.getElementById('btn-avatar').addEventListener('click', () => {

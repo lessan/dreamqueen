@@ -1,1 +1,17 @@
-{ "id": "starter", "name": "Starter Pack", "theme": "basic", "items": [] }
+{
+  "id": "starter",
+  "name": "Starter Pack",
+  "theme": "basic",
+  "items": [
+    { "id": "starter_tee", "name": "Plain White Tee", "category": "top" },
+    { "id": "starter_jeans", "name": "Blue Jeans", "category": "bottom" },
+    { "id": "starter_sneakers", "name": "Red Sneakers", "category": "shoes" },
+    { "id": "starter_hoodie", "name": "Pink Hoodie", "category": "top" },
+    { "id": "starter_skirt", "name": "Black Skirt", "category": "bottom" },
+    { "id": "starter_raincoat", "name": "Yellow Raincoat", "category": "outerwear" },
+    { "id": "starter_dress", "name": "Purple Dress", "category": "top" },
+    { "id": "starter_hairclip", "name": "Star Hair Clip", "category": "accessory" },
+    { "id": "starter_socks", "name": "White Socks", "category": "shoes" },
+    { "id": "starter_denim_jacket", "name": "Denim Jacket", "category": "outerwear" }
+  ]
+}
