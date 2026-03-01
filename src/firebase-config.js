@@ -1,6 +1,6 @@
 // Fill in your Firebase project config from:
 // Firebase Console > Project Settings > Your apps > SDK setup and configuration
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyDOiS3LKLDPc_Zq9fhMJhGjS_9NL9ZKdj0",
   authDomain: "dreamqueen-3d01e.firebaseapp.com",
   databaseURL: "https://dreamqueen-3d01e-default-rtdb.asia-southeast1.firebasedatabase.app",
