@@ -150,8 +150,11 @@ export function init(container) {
     <div class="screen" data-screen="dressingroom" style="display:flex;flex-direction:column;height:100%;padding:0;overflow:hidden;">
       <!-- Header bar -->
       <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 16px;border-bottom:1px solid var(--color-surface);flex-shrink:0;min-height:48px;">
-        <span style="color:var(--color-primary);font-size:14px;font-weight:600;">${codename}</span>
-        <button class="btn btn--primary" id="dr-publish" style="padding:6px 14px;font-size:13px;">Publish</button>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button class="btn" id="dr-home" style="padding:4px 10px;font-size:18px;background:transparent;border:none;color:var(--color-secondary);">🏠</button>
+          <span style="color:var(--color-primary);font-size:14px;font-weight:600;">${codename}</span>
+        </div>
+        <button class="btn btn--primary" id="dr-publish" style="padding:6px 14px;font-size:13px;">✨ Publish</button>
       </div>
 
       <!-- Avatar display -->
@@ -182,6 +185,10 @@ export function init(container) {
   renderCategoryTabs();
   renderWardrobeGrid();
   renderOtherPlayers();
+
+  document.getElementById('dr-home').addEventListener('click', () => {
+    navigateTo('home');
+  });
 
   document.getElementById('dr-edit-avatar').addEventListener('click', () => {
     navigateTo('avatareditor');

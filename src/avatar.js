@@ -165,11 +165,11 @@ function drawHairBack(ctx, hairStyle, hairColor, bodyType) {
       ctx.closePath();
       ctx.fill();
       break;
-    case 6: // Braids — two long lines down front
+    case 6: // Braids — two lines down to shoulder level
       ctx.beginPath();
-      roundRect(ctx, d.headCX - d.headR + 2, d.headCY + 10, 12, 120, 5);
+      roundRect(ctx, d.headCX - d.headR + 2, d.headCY + 10, 12, 70, 5);
       ctx.fill();
-      roundRect(ctx, d.headCX + d.headR - 14, d.headCY + 10, 12, 120, 5);
+      roundRect(ctx, d.headCX + d.headR - 14, d.headCY + 10, 12, 70, 5);
       ctx.fill();
       break;
     case 10: // Afro — large back circle
@@ -295,12 +295,12 @@ function drawHairFront(ctx, hairStyle, hairColor, bodyType) {
       ctx.lineTo(cx - r + 4, cy - r + 18);
       ctx.closePath();
       ctx.fill();
-      // Braid tie dots
+      // Braid tie dots at bottom of braids
       ctx.beginPath();
-      ctx.arc(cx - r + 8, cy + 128, 6, 0, Math.PI * 2);
+      ctx.arc(cx - r + 8, cy + 76, 6, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
-      ctx.arc(cx + r - 8, cy + 128, 6, 0, Math.PI * 2);
+      ctx.arc(cx + r - 8, cy + 76, 6, 0, Math.PI * 2);
       ctx.fill();
       break;
     }
@@ -581,20 +581,16 @@ export function renderAvatar(ctx, avatarState, x = 0, y = 0, scale = 1) {
   // 2. Body (with skin tone)
   drawBody(ctx, bodyType, skinTone);
 
-  // 3. Eyes
-  drawEyes(ctx, eyeShape, bodyType);
-
-  // 4. Nose
-  drawNose(ctx, bodyType);
-
-  // 5. Mouth
-  drawMouth(ctx, mouthShape, bodyType);
-
-  // 6. Clothing layers
+  // 3. Clothing layers (over body, behind face)
   drawClothing(ctx, equipped);
 
-  // 7. Hair front layer (over face/body)
+  // 4. Hair front layer (over body + clothing)
   drawHairFront(ctx, hairStyle, hairColor, bodyType);
+
+  // 5. Face features — always drawn last so hair never covers the face
+  drawEyes(ctx, eyeShape, bodyType);
+  drawNose(ctx, bodyType);
+  drawMouth(ctx, mouthShape, bodyType);
 
   ctx.restore();
 }
