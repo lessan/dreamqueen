@@ -54,7 +54,7 @@ exports.cartoonize = onCall(
     const description = descResult.response.text().trim();
 
     // Step 2: Generate cartoon sprite via Imagen 4 REST API
-    const prompt = `Cute flat cartoon illustration of ${description}. Clean outlines, bright colors, white background, floating garment with no person wearing it, children's dress-up game style.`;
+    const prompt = `Kawaii chibi fashion illustration of ${description}. Full color, no person wearing it, garment floating on a plain white background. Bright vivid colors, clean bold outlines, shiny fabric highlights, anime fashion magazine style, cute and sparkly, dress-up game item.`;
 
     const imgResponse = await fetch(
       'https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-fast-generate-001:predict',
