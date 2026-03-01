@@ -16,7 +16,7 @@ exports.detectImageType = onCall(
     if (!imageBase64) throw new Error('imageBase64 required');
 
     const genAI = new GoogleGenerativeAI(geminiKey.value());
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
     const result = await model.generateContent([
       { inlineData: { mimeType: 'image/jpeg', data: imageBase64 } },
@@ -44,7 +44,7 @@ exports.cartoonize = onCall(
     const genAI = new GoogleGenerativeAI(key);
 
     // Step 1: Describe the clothing item using Gemini vision
-    const visionModel = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const visionModel = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
     const descResult = await visionModel.generateContent([
       { inlineData: { mimeType: 'image/jpeg', data: imageBase64 } },
       type === 'drawing'
