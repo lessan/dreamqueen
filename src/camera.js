@@ -1,26 +1,35 @@
-// Camera capture — stub
+// Camera capture — getUserMedia + frame capture
+
+let _stream = null;
 
 export async function startCamera(videoEl) {
-  // TODO: getUserMedia with facingMode environment, attach to video
-  const stream = await navigator.mediaDevices.getUserMedia({
-    video: { facingMode: 'environment' }
-  });
-  videoEl.srcObject = stream;
-  await videoEl.play();
+  try {
+    _stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: 'environment', width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false
+    });
+    videoEl.srcObject = _stream;
+    await videoEl.play();
+    return true;
+  } catch (err) {
+    console.error('Camera error:', err);
+    return false;
+  }
 }
 
 export function captureFrame(videoEl) {
   const canvas = document.createElement('canvas');
-  canvas.width = videoEl.videoWidth;
-  canvas.height = videoEl.videoHeight;
+  canvas.width = videoEl.videoWidth || 640;
+  canvas.height = videoEl.videoHeight || 480;
   const ctx = canvas.getContext('2d');
   ctx.drawImage(videoEl, 0, 0);
-  return canvas.toDataURL('image/png');
+  // Return base64 without the data:image/jpeg;base64, prefix
+  return canvas.toDataURL('image/jpeg', 0.8).split(',')[1];
 }
 
-export function stopCamera(videoEl) {
-  if (videoEl.srcObject) {
-    videoEl.srcObject.getTracks().forEach((t) => t.stop());
-    videoEl.srcObject = null;
+export function stopCamera() {
+  if (_stream) {
+    _stream.getTracks().forEach(t => t.stop());
+    _stream = null;
   }
 }

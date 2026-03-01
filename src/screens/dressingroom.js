@@ -4,6 +4,7 @@ import { getAvatarCanvas } from '../avatar.js';
 import { loadMyAvatar, saveMyAvatar } from './avatareditor.js';
 import { getItems, equipItem, unequipItem, getEquipped } from '../wardrobe.js';
 import { showToast } from '../ui.js';
+import { publishOutfit } from '../gallery.js';
 
 const CATEGORIES = [
   { key: 'top', label: 'Top' },
@@ -190,8 +191,19 @@ export function init(container) {
     navigateTo('camera');
   });
 
-  document.getElementById('dr-publish').addEventListener('click', () => {
-    showToast('Coming soon!');
+  document.getElementById('dr-publish').addEventListener('click', async () => {
+    const btn = document.getElementById('dr-publish');
+    btn.disabled = true;
+    btn.textContent = 'Publishing...';
+    try {
+      await publishOutfit();
+      showToast('Outfit published!');
+    } catch (err) {
+      console.error('Publish failed:', err);
+      showToast('Could not publish right now');
+    }
+    btn.disabled = false;
+    btn.textContent = 'Publish';
   });
 }
 
