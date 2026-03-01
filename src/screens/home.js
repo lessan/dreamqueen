@@ -45,8 +45,9 @@ export function init(container) {
   cvs.style.objectFit = 'contain';
   previewContainer.appendChild(cvs);
 
-  document.getElementById('btn-create').addEventListener('click', () => {
-    const roomId = createRoom();
+  document.getElementById('btn-create').addEventListener('click', async () => {
+    const roomId = await createRoom();
+    state.roomId = roomId;
     navigateTo('lobby', { roomId });
   });
 

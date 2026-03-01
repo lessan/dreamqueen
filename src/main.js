@@ -52,6 +52,12 @@ async function initApp() {
     await render();
   });
 
+  // Expose __renderScreen for navigateTo
+  window.__renderScreen = async (screen) => {
+    state.screen = screen;
+    await render();
+  };
+
   // Listen for screen changes from navigateTo
   window.addEventListener('screenchange', async () => {
     await render();

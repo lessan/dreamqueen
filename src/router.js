@@ -24,6 +24,10 @@ export function navigateTo(screen, params = {}) {
   if (params.roomId) state.roomId = params.roomId;
   if (params.packId) state.pendingPackId = params.packId;
 
+  // Trigger screen render
+  if (typeof window.__renderScreen === 'function') {
+    window.__renderScreen(screen, params);
+  }
   // Dispatch custom event for screen change
   window.dispatchEvent(new CustomEvent('screenchange', { detail: { screen } }));
 }
