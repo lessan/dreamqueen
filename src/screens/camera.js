@@ -38,8 +38,8 @@ function showCaptureView(container) {
       <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:16px;">
         <div id="cam-viewport" style="width:100%;max-width:320px;aspect-ratio:4/3;background:#000;border-radius:12px;overflow:hidden;position:relative;">
           <video id="cam-video" autoplay playsinline muted style="width:100%;height:100%;object-fit:cover;"></video>
-          <div id="cam-no-camera" style="display:none;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--color-secondary);font-size:14px;text-align:center;padding:16px;">
-            Camera not available
+          <div id="cam-no-camera" style="display:none;position:absolute;inset:0;align-items:center;justify-content:center;color:var(--color-secondary);font-size:14px;text-align:center;padding:16px;">
+            Camera not available.<br>Use "Use Photo" below instead.
           </div>
         </div>
         <p style="color:var(--color-secondary);font-size:14px;text-align:center;">Point at a clothing item and capture!</p>
