@@ -53,29 +53,38 @@ exports.cartoonize = onCall(
     ]);
     const description = descResult.response.text().trim();
 
-    // Step 2: Generate cartoon sprite via Imagen 3 REST API (fetch, no SDK needed)
+    // Step 2: Generate cartoon sprite via Imagen 4 REST API
     const prompt = `Cute flat cartoon illustration of ${description}. Clean outlines, bright colors, white background, floating garment with no person wearing it, children's dress-up game style.`;
 
     const imgResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${key}`,
+      'https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-fast-generate-001:predict',
       {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': key
+        },
         body: JSON.stringify({
           instances: [{ prompt }],
-          parameters: { sampleCount: 1, aspectRatio: '3:4' }
+          parameters: { numberOfImages: 1, aspectRatio: '3:4' }
         })
       }
     );
 
     if (!imgResponse.ok) {
       const errText = await imgResponse.text();
+      console.error('Imagen API error', imgResponse.status, errText);
       throw new Error(`Imagen API error ${imgResponse.status}: ${errText}`);
     }
 
     const imgData = await imgResponse.json();
-    const cartoonBase64 = imgData.predictions?.[0]?.bytesBase64Encoded;
-    if (!cartoonBase64) throw new Error('No image returned from Imagen');
+    // Imagen 4 returns generatedImages[].image.imageBytes
+    const cartoonBase64 = imgData.predictions?.[0]?.bytesBase64Encoded
+      ?? imgData.generatedImages?.[0]?.image?.imageBytes;
+    if (!cartoonBase64) {
+      console.error('Imagen response structure:', JSON.stringify(imgData).slice(0, 500));
+      throw new Error('No image returned from Imagen');
+    }
 
     return { cartoonBase64 };
   }
