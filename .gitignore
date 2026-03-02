@@ -4,3 +4,8 @@ functions/node_modules/
 *.local
 .firebase/
 firebase-debug.log
+# OS generated files
+.DS_Store
+
+# Obsidian settings and local cache
+.obsidian/
