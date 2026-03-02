@@ -72,7 +72,7 @@ STYLE_MODIFIER = (
 )
 
 BASE_POSE = (
-    "subtle A-pose, arms angled 5 degrees away from the body, "
+    "Neutral anatomical standing position, "
     "full body visible from head to feet, front-facing, centered, "
     "solid light-grey background (#E8E8E8), "
     "1:1 square canvas, character fills 80% of frame"

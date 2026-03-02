@@ -45,8 +45,8 @@ WARDROBE = [
         "id":       "tshirt_white",
         "name":     "White Crewneck T-Shirt",
         "category": "top",
-        "shape":    "relaxed-fit short-sleeve crewneck t-shirt, strict front-facing A-pose, "
-                    "sleeves at 5-degree angle, perfectly symmetrical, no tilt, no rotation",
+        "shape":    "relaxed-fit short-sleeve crewneck t-shirt, "
+                    "Neutral anatomical standing position, perfectly symmetrical, no tilt, no rotation",
         "material": "soft cotton jersey, smooth matte surface with subtle woven grain, "
                     "diffused soft highlights, no specular reflections, "
                     "gentle natural folds at chest and sleeve hems",
@@ -57,8 +57,8 @@ WARDROBE = [
         "name":     "Red Pullover Hoodie",
         "category": "top",
         "shape":    "relaxed-fit pullover hoodie with drawstring hood, kangaroo front pocket, "
-                    "ribbed cuffs and hem, strict front-facing A-pose, "
-                    "sleeves at 5-degree angle, perfectly symmetrical, no tilt, no rotation",
+                    "ribbed cuffs and hem, "
+                    "Neutral anatomical standing position, perfectly symmetrical, no tilt, no rotation",
         "material": "brushed fleece cotton, soft matte pillowy surface with subtle fabric grain, "
                     "diffused soft highlights, no specular, clean stylized folds at elbows and pocket",
         "color":    "vibrant cherry red (#D72638)",
@@ -68,8 +68,8 @@ WARDROBE = [
         "name":     "Black Leather Moto Jacket",
         "category": "top",
         "shape":    "fitted moto-style jacket, zip-front closure, small lapel collar, "
-                    "zippered cuffs, strict front-facing A-pose, "
-                    "sleeves at 5-degree angle, perfectly symmetrical, no tilt, no rotation",
+                    "zippered cuffs, "
+                    "Neutral anatomical standing position, perfectly symmetrical, no tilt, no rotation",
         "material": "soft-grain leather, satin finish, diffused highlights on shoulders, "
                     "stylized clean 3D folds, no high-gloss or mirror reflections, "
                     "defined panel seams, sharp clean folds at elbow and waist",
@@ -80,7 +80,7 @@ WARDROBE = [
         "name":     "Olive Bomber Jacket",
         "category": "top",
         "shape":    "relaxed-fit bomber jacket, ribbed collar, cuffs, and hem, zip-front, "
-                    "strict front-facing A-pose, sleeves at 5-degree angle, "
+                    "Neutral anatomical standing position,"
                     "perfectly symmetrical, no tilt, no rotation",
         "material": "matte nylon ripstop, diffused satin sheen, ribbed knit sections in matte contrast, "
                     "no harsh specular reflections, clean minimal folds",
@@ -91,7 +91,7 @@ WARDROBE = [
         "name":     "Pink Crop Top",
         "category": "top",
         "shape":    "fitted cropped short-sleeve top, hem sits at mid-torso, small round neckline, "
-                    "strict front-facing A-pose, sleeves at 5-degree angle, "
+                    "Neutral anatomical standing position,"
                     "perfectly symmetrical, no tilt, no rotation",
         "material": "smooth ribbed cotton-jersey, fine horizontal rib texture, "
                     "diffused soft highlights, no specular, gentle stretch folds at chest",
@@ -104,7 +104,7 @@ WARDROBE = [
         "name":     "Navy Slim Chinos",
         "category": "bottom",
         "shape":    "slim straight-leg chinos, high waist, front crease, cuffed hem, "
-                    "strict front-facing A-pose, legs slightly apart, "
+                    "Neutral anatomical standing position, legs slightly apart,"
                     "perfectly symmetrical, no tilt, no rotation",
         "material": "smooth cotton twill, structured and clean, diffused soft highlights, "
                     "no specular reflections, minimal fabric folds at hip and cuff",
@@ -115,7 +115,7 @@ WARDROBE = [
         "name":     "Distressed Denim Jeans",
         "category": "bottom",
         "shape":    "slim straight-leg jeans, mid-rise, ripped detail at one knee, "
-                    "strict front-facing A-pose, legs slightly apart, "
+                    "Neutral anatomical standing position, legs slightly apart,"
                     "perfectly symmetrical, no tilt, no rotation",
         "material": "mid-weight denim, stylized worn-in fade texture, "
                     "defined horizontal distress marks at knee, "
@@ -128,7 +128,7 @@ WARDROBE = [
         "name":     "Grey Jogger Sweatpants",
         "category": "bottom",
         "shape":    "relaxed jogger sweatpants, elastic waistband, tapered leg, ribbed ankle cuffs, "
-                    "strict front-facing A-pose, legs slightly apart, "
+                    "Neutral anatomical standing position, legs slightly apart,"
                     "perfectly symmetrical, no tilt, no rotation",
         "material": "heavyweight fleece jersey, soft matte surface with slight fabric pile, "
                     "diffused highlights, no specular, gentle drape folds at hip",
@@ -140,7 +140,7 @@ WARDROBE = [
         "category": "bottom",
         "shape":    "high-waist pleated mini skirt, flared hem sitting mid-thigh, "
                     "neat accordion pleats around circumference, "
-                    "strict front-facing A-pose, perfectly symmetrical, no tilt, no rotation",
+                    "Neutral anatomical standing position, perfectly symmetrical,no tilt, no rotation",
         "material": "lightweight chiffon-like fabric, soft and flowy pleats with delicate drape, "
                     "diffused satin sheen on pleat ridges, no harsh specular",
         "color":    "soft blush pink (#F5C6D0)",
@@ -153,7 +153,7 @@ WARDROBE = [
         "category": "dress",
         "shape":    "sleeveless A-line sundress, sweetheart neckline, "
                     "knee length with slightly flared skirt, fitted bodice, "
-                    "strict front-facing A-pose, perfectly symmetrical, no tilt, no rotation",
+                    "Neutral anatomical standing position, perfectly symmetrical,no tilt, no rotation",
         "material": "soft lightweight cotton, gentle body drape, diffused matte surface, "
                     "clean modern floral print with bold graphic blooms, "
                     "no wrinkle texture, flat crisp print, no specular reflections",
@@ -166,7 +166,7 @@ WARDROBE = [
         "name":     "Camel Trench Coat",
         "category": "outerwear",
         "shape":    "double-breasted trench coat, knee length, belted waist, wide lapel collar, "
-                    "strict front-facing A-pose, sleeves at 5-degree angle, "
+                    "Neutral anatomical standing position,"
                     "perfectly symmetrical, no tilt, no rotation",
         "material": "structured gabardine cotton, clean crisp matte surface, "
                     "diffused highlights, no specular reflections, "
@@ -189,8 +189,7 @@ STYLE_MODIFIER = (
 
 # The key isolation/geometry constraint
 GHOST_MANNEQUIN = (
-    "invisible ghost mannequin technique: garment holds a strict A-pose 3D shape, "
-    "shoulders and sleeves aligned to a standard 5-degree angle, "
+    "invisible ghost mannequin technique: garment holds a Neutral anatomical standing position, "
     "perfectly symmetrical, front-on view, no tilt, no rotation, "
     "only the garment itself floating upright"
 )
