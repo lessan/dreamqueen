@@ -45,9 +45,11 @@ WARDROBE = [
         "id":       "tshirt_white",
         "name":     "White Crewneck T-Shirt",
         "category": "top",
-        "shape":    "relaxed-fit short-sleeve crewneck t-shirt, chest-width sleeves at 5-degree angle",
+        "shape":    "relaxed-fit short-sleeve crewneck t-shirt, strict front-facing A-pose, "
+                    "sleeves at 5-degree angle, perfectly symmetrical, no tilt, no rotation",
         "material": "soft cotton jersey, smooth matte surface with subtle woven grain, "
-                    "gentle natural folds at the chest and sleeve hems",
+                    "diffused soft highlights, no specular reflections, "
+                    "gentle natural folds at chest and sleeve hems",
         "color":    "crisp white, with very soft cool-grey shadow folds to distinguish from background",
     },
     {
@@ -55,9 +57,10 @@ WARDROBE = [
         "name":     "Red Pullover Hoodie",
         "category": "top",
         "shape":    "relaxed-fit pullover hoodie with drawstring hood, kangaroo front pocket, "
-                    "ribbed cuffs and hem, sleeves at 5-degree angle",
-        "material": "brushed fleece cotton, soft pillowy surface with subtle fabric grain, "
-                    "clean stylized folds at elbows and pocket",
+                    "ribbed cuffs and hem, strict front-facing A-pose, "
+                    "sleeves at 5-degree angle, perfectly symmetrical, no tilt, no rotation",
+        "material": "brushed fleece cotton, soft matte pillowy surface with subtle fabric grain, "
+                    "diffused soft highlights, no specular, clean stylized folds at elbows and pocket",
         "color":    "vibrant cherry red (#D72638)",
     },
     {
@@ -65,29 +68,33 @@ WARDROBE = [
         "name":     "Black Leather Moto Jacket",
         "category": "top",
         "shape":    "fitted moto-style jacket, zip-front closure, small lapel collar, "
-                    "zippered cuffs, sleeves at 5-degree angle",
-        "material": "smooth polished leather, high-gloss specular highlights on shoulders and collar, "
+                    "zippered cuffs, strict front-facing A-pose, "
+                    "sleeves at 5-degree angle, perfectly symmetrical, no tilt, no rotation",
+        "material": "soft-grain leather, satin finish, diffused highlights on shoulders, "
+                    "stylized clean 3D folds, no high-gloss or mirror reflections, "
                     "defined panel seams, sharp clean folds at elbow and waist",
-        "color":    "deep matte black (#1A1A1A) with bright specular highlights",
+        "color":    "deep charcoal black (#1A1A1A)",
     },
     {
         "id":       "jacket_olive_bomber",
         "name":     "Olive Bomber Jacket",
         "category": "top",
-        "shape":    "relaxed-fit bomber jacket, ribbed collar, cuffs, and hem, "
-                    "zip-front, sleeves at 5-degree angle",
-        "material": "nylon ripstop with soft nylon sheen, ribbed knit sections in matte contrast, "
-                    "clean minimal folds",
+        "shape":    "relaxed-fit bomber jacket, ribbed collar, cuffs, and hem, zip-front, "
+                    "strict front-facing A-pose, sleeves at 5-degree angle, "
+                    "perfectly symmetrical, no tilt, no rotation",
+        "material": "matte nylon ripstop, diffused satin sheen, ribbed knit sections in matte contrast, "
+                    "no harsh specular reflections, clean minimal folds",
         "color":    "muted olive green (#6B7A4C)",
     },
     {
         "id":       "top_pink_crop",
         "name":     "Pink Crop Top",
         "category": "top",
-        "shape":    "fitted cropped short-sleeve top, hem sits at mid-torso, "
-                    "small round neckline, sleeves at 5-degree angle",
+        "shape":    "fitted cropped short-sleeve top, hem sits at mid-torso, small round neckline, "
+                    "strict front-facing A-pose, sleeves at 5-degree angle, "
+                    "perfectly symmetrical, no tilt, no rotation",
         "material": "smooth ribbed cotton-jersey, fine horizontal rib texture, "
-                    "gentle stretch folds at chest",
+                    "diffused soft highlights, no specular, gentle stretch folds at chest",
         "color":    "soft bubblegum pink (#F4A5BE)",
     },
 
@@ -96,10 +103,11 @@ WARDROBE = [
         "id":       "chinos_navy",
         "name":     "Navy Slim Chinos",
         "category": "bottom",
-        "shape":    "slim straight-leg chinos, high waist, front crease, "
-                    "cuffed hem, legs slightly apart matching A-pose stance",
-        "material": "smooth cotton twill, structured and clean, "
-                    "minimal fabric folds at hip and cuff",
+        "shape":    "slim straight-leg chinos, high waist, front crease, cuffed hem, "
+                    "strict front-facing A-pose, legs slightly apart, "
+                    "perfectly symmetrical, no tilt, no rotation",
+        "material": "smooth cotton twill, structured and clean, diffused soft highlights, "
+                    "no specular reflections, minimal fabric folds at hip and cuff",
         "color":    "deep navy blue (#1B2A4A)",
     },
     {
@@ -107,20 +115,23 @@ WARDROBE = [
         "name":     "Distressed Denim Jeans",
         "category": "bottom",
         "shape":    "slim straight-leg jeans, mid-rise, ripped detail at one knee, "
-                    "legs slightly apart matching A-pose stance",
+                    "strict front-facing A-pose, legs slightly apart, "
+                    "perfectly symmetrical, no tilt, no rotation",
         "material": "mid-weight denim, stylized worn-in fade texture, "
                     "defined horizontal distress marks at knee, "
-                    "clean warp-and-weft weave visible in highlights",
+                    "diffused fabric highlights, no specular sheen, "
+                    "clean warp-and-weft weave visible in surface texture",
         "color":    "faded mid-wash indigo with white frayed fibre detail",
     },
     {
         "id":       "sweatpants_grey",
         "name":     "Grey Jogger Sweatpants",
         "category": "bottom",
-        "shape":    "relaxed jogger sweatpants, elastic waistband, tapered leg, "
-                    "ribbed ankle cuffs, legs slightly apart",
+        "shape":    "relaxed jogger sweatpants, elastic waistband, tapered leg, ribbed ankle cuffs, "
+                    "strict front-facing A-pose, legs slightly apart, "
+                    "perfectly symmetrical, no tilt, no rotation",
         "material": "heavyweight fleece jersey, soft matte surface with slight fabric pile, "
-                    "gentle drape folds at hip",
+                    "diffused highlights, no specular, gentle drape folds at hip",
         "color":    "heather grey (#A8A8A8) with subtle marled texture",
     },
     {
@@ -128,9 +139,10 @@ WARDROBE = [
         "name":     "Pink Pleated Mini Skirt",
         "category": "bottom",
         "shape":    "high-waist pleated mini skirt, flared hem sitting mid-thigh, "
-                    "neat accordion pleats around circumference",
+                    "neat accordion pleats around circumference, "
+                    "strict front-facing A-pose, perfectly symmetrical, no tilt, no rotation",
         "material": "lightweight chiffon-like fabric, soft and flowy pleats with delicate drape, "
-                    "subtle sheen on pleat ridges",
+                    "diffused satin sheen on pleat ridges, no harsh specular",
         "color":    "soft blush pink (#F5C6D0)",
     },
 
@@ -140,10 +152,11 @@ WARDROBE = [
         "name":     "Floral Sundress",
         "category": "dress",
         "shape":    "sleeveless A-line sundress, sweetheart neckline, "
-                    "knee length with slightly flared skirt, fitted bodice",
-        "material": "soft lightweight cotton, gentle body drape, "
+                    "knee length with slightly flared skirt, fitted bodice, "
+                    "strict front-facing A-pose, perfectly symmetrical, no tilt, no rotation",
+        "material": "soft lightweight cotton, gentle body drape, diffused matte surface, "
                     "clean modern floral print with bold graphic blooms, "
-                    "no wrinkle texture, flat crisp print",
+                    "no wrinkle texture, flat crisp print, no specular reflections",
         "color":    "white base with large colorful floral pattern in pink, coral, and green",
     },
 
@@ -152,9 +165,11 @@ WARDROBE = [
         "id":       "coat_camel_trench",
         "name":     "Camel Trench Coat",
         "category": "outerwear",
-        "shape":    "double-breasted trench coat, knee length, belted waist, "
-                    "wide lapel collar, sleeves at 5-degree angle",
-        "material": "structured gabardine cotton, clean crisp surface, "
+        "shape":    "double-breasted trench coat, knee length, belted waist, wide lapel collar, "
+                    "strict front-facing A-pose, sleeves at 5-degree angle, "
+                    "perfectly symmetrical, no tilt, no rotation",
+        "material": "structured gabardine cotton, clean crisp matte surface, "
+                    "diffused highlights, no specular reflections, "
                     "sharp tailored folds at lapel, belt, and sleeve crease",
         "color":    "warm camel (#C19A6B) with slightly darker shadow folds",
     },
@@ -166,17 +181,18 @@ WARDROBE = [
 # Shared style modifier — identical to avatar generation to ensure matching aesthetics
 STYLE_MODIFIER = (
     "Modern Editorial 3D style, high-fidelity 3D render, "
+    "front-facing orthographic view, no perspective distortion, "
     "polished clean material rendering, stylized-but-defined fabric texture, "
-    "three-point studio lighting with soft defined shadows, "
-    "Sims 4 and Fortnite visual quality"
+    "three-point studio lighting with soft diffused highlights, "
+    "no harsh specular reflections, Sims 4 and Fortnite visual quality"
 )
 
 # The key isolation/geometry constraint
 GHOST_MANNEQUIN = (
-    "invisible ghost mannequin technique: clothing holds its natural A-pose 3D shape "
-    "as if worn by an invisible person, arms at 5-degree angle from body, "
-    "no mannequin visible, no body parts, no hands, no head, no neck — "
-    "only the garment itself, floating upright"
+    "invisible ghost mannequin technique: garment holds a strict A-pose 3D shape, "
+    "shoulders and sleeves aligned to a standard 5-degree angle, "
+    "perfectly symmetrical, front-on view, no tilt, no rotation, "
+    "only the garment itself floating upright"
 )
 
 # White background for easy masking
@@ -274,16 +290,16 @@ def generate_item(client, item, dry_run=False, skip_bg_removal=False):
     filename = f"{item['id']}.png"
     out_path  = OUTPUT_DIR / filename
 
-    if out_path.exists():
-        print(f"  ↩  skip  {filename}")
-        return "skip"
-
     prompt = build_prompt(item)
 
     if dry_run:
         print(f"  📝 {item['id']}  [{item['category']}]  {item['name']}")
         print(f"     {prompt}")
         return "ok"
+
+    if out_path.exists():
+        print(f"  ↩  skip  {filename}")
+        return "skip"
 
     for attempt in range(1, RETRY_MAX + 1):
         try:
