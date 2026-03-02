@@ -5,8 +5,14 @@ export function initStarterPack() {
   const wardrobe = loadWardrobe();
 
   // Migrate out old canvas-drawn starter items
-  const filtered = wardrobe.filter(i => i.packId !== 'starter');
-  if (filtered.length !== wardrobe.length) {
+  let filtered = wardrobe.filter(i => i.packId !== 'starter');
+
+  // Fix category for floral sundress (was 'top', now 'dress')
+  filtered = filtered.map(i =>
+    i.id === 'dress_floral_sundress' ? { ...i, category: 'dress' } : i
+  );
+
+  if (JSON.stringify(filtered) !== JSON.stringify(wardrobe)) {
     saveWardrobe(filtered);
   }
 

@@ -137,5 +137,5 @@ export const WARDROBE_3D = [
   { id: 'sweatpants_grey',      name: 'Grey Sweatpants',       category: 'bottom',    imagePath: wardrobePath('sweatpants_grey') },
   { id: 'skirt_pink_pleated',   name: 'Pink Pleated Skirt',    category: 'bottom',    imagePath: wardrobePath('skirt_pink_pleated') },
   // Dresses
-  { id: 'dress_floral_sundress',name: 'Floral Sundress',       category: 'top',       imagePath: wardrobePath('dress_floral_sundress') },
+  { id: 'dress_floral_sundress',name: 'Floral Sundress',       category: 'dress',     imagePath: wardrobePath('dress_floral_sundress') },
 ];

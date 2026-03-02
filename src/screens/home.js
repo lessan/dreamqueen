@@ -3,6 +3,7 @@ import { navigateTo } from '../router.js';
 import { createRoom } from '../room.js';
 import { getAvatarCanvas } from '../avatar.js';
 import { loadMyAvatar } from './avatareditor.js';
+import { avatarAvailable, avatarImagePath } from '../avatarImages.js';
 
 export function init(container) {
   // Load saved avatar into state
@@ -39,11 +40,17 @@ export function init(container) {
 
   // Render small avatar preview
   const previewContainer = document.getElementById('home-avatar-preview');
-  const cvs = getAvatarCanvas(state.myAvatar, 120, 160);
-  cvs.style.width = '100%';
-  cvs.style.height = '100%';
-  cvs.style.objectFit = 'contain';
-  previewContainer.appendChild(cvs);
+  const av = state.myAvatar;
+  if (avatarAvailable(av.gender, av.body3d, av.skin3d, av.hair3d)) {
+    const img = document.createElement('img');
+    img.src = avatarImagePath(av.gender, av.body3d, av.skin3d, av.hair3d);
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+    previewContainer.appendChild(img);
+  } else {
+    const cvs = getAvatarCanvas(av, 120, 160);
+    cvs.style.cssText = 'width:100%;height:100%;object-fit:contain;';
+    previewContainer.appendChild(cvs);
+  }
 
   document.getElementById('btn-create').addEventListener('click', async () => {
     const roomId = await createRoom();

@@ -3,25 +3,26 @@ import { navigateTo } from '../router.js';
 import { getAvatarCanvas } from '../avatar.js';
 import { loadMyAvatar, saveMyAvatar } from './avatareditor.js';
 import { avatarAvailable, avatarImagePath } from '../avatarImages.js';
-import { getItems, equipItem, unequipItem, getEquipped } from '../wardrobe.js';
+import { getItems, equipItem, unequipItem, getEquipped, removeItem } from '../wardrobe.js';
 import { showToast } from '../ui.js';
 import { publishOutfit } from '../gallery.js';
 
 const CATEGORIES = [
-  { key: 'top', label: 'Top' },
-  { key: 'bottom', label: 'Bottom' },
-  { key: 'shoes', label: 'Shoes' },
-  { key: 'outerwear', label: 'Outer' },
+  { key: 'top',      label: 'Top'   },
+  { key: 'dress',    label: 'Dress' },
+  { key: 'bottom',   label: 'Bottom'},
+  { key: 'shoes',    label: 'Shoes' },
+  { key: 'outerwear',label: 'Outer' },
 ];
 
 // Per-category overlay sizing so garments sit at the right body region.
 // The avatar container is 220×293px; 1:1 avatar images letterbox to 220×220
 // with ~36.5px top/bottom padding. Values are percentages of container size.
 const OVERLAY_POS = {
-  top:       { width: '52%', top: '22%' },
-  outerwear: { width: '60%', top: '20%' },
-  bottom:    { width: '52%', top: '50%' },
-  dress:     { width: '58%', top: '20%' },
+  top:       { width: '34%', top: '22%' },
+  dress:     { width: '52%', top: '28%' },
+  outerwear: { width: '45%', top: '25%' },
+  bottom:    { width: '52%', top: '38%' },
   shoes:     { width: '38%', top: '76%' },
 };
 
@@ -47,10 +48,12 @@ function refreshAvatarDisplay() {
     // Overlay each equipped wardrobe item with per-category sizing
     const equipped = av.equipped || {};
     for (const item of Object.values(equipped)) {
-      if (!item || !item.imagePath) continue;
+      if (!item) continue;
+      const imgSrc = item.imagePath || item.imageDataURL;
+      if (!imgSrc) continue;
       const pos = OVERLAY_POS[item.category] || OVERLAY_POS.top;
       const overlay = document.createElement('img');
-      overlay.src = item.imagePath;
+      overlay.src = imgSrc;
       overlay.style.cssText = `position:absolute;left:50%;transform:translateX(-50%);` +
         `width:${pos.width};top:${pos.top};pointer-events:none;`;
       container.appendChild(overlay);
@@ -87,6 +90,10 @@ function renderWardrobeGrid() {
   grid.innerHTML = '';
   for (const item of items) {
     const isEquipped = equippedItem && equippedItem.id === item.id;
+
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position:relative;';
+
     const card = document.createElement('div');
     card.style.cssText = `
       display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px;
@@ -123,7 +130,25 @@ function renderWardrobeGrid() {
       renderWardrobeGrid();
     });
 
-    grid.appendChild(card);
+    // Delete button (✕) — only for non-3D starter items or user-uploaded items
+    if (item.source !== '3d') {
+      const del = document.createElement('button');
+      del.textContent = '✕';
+      del.style.cssText = `position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;
+        border:none;background:rgba(0,0,0,0.45);color:#fff;font-size:10px;cursor:pointer;
+        display:flex;align-items:center;justify-content:center;line-height:1;padding:0;`;
+      del.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isEquipped) unequipItem(_activeCategory);
+        removeItem(item.id);
+        refreshAvatarDisplay();
+        renderWardrobeGrid();
+      });
+      wrapper.appendChild(del);
+    }
+
+    wrapper.appendChild(card);
+    grid.appendChild(wrapper);
   }
 }
 
