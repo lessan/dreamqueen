@@ -12,8 +12,18 @@ const CATEGORIES = [
   { key: 'bottom', label: 'Bottom' },
   { key: 'shoes', label: 'Shoes' },
   { key: 'outerwear', label: 'Outer' },
-  { key: 'accessory', label: 'Accessory' },
 ];
+
+// Per-category overlay sizing so garments sit at the right body region.
+// The avatar container is 220×293px; 1:1 avatar images letterbox to 220×220
+// with ~36.5px top/bottom padding. Values are percentages of container size.
+const OVERLAY_POS = {
+  top:       { width: '52%', top: '22%' },
+  outerwear: { width: '60%', top: '20%' },
+  bottom:    { width: '52%', top: '50%' },
+  dress:     { width: '58%', top: '20%' },
+  shoes:     { width: '38%', top: '76%' },
+};
 
 let _activeCategory = 'top';
 
@@ -34,13 +44,15 @@ function refreshAvatarDisplay() {
     base.onerror = () => { container.innerHTML = ''; appendCanvasFallback(container); };
     container.appendChild(base);
 
-    // Overlay each equipped wardrobe item with an imagePath
+    // Overlay each equipped wardrobe item with per-category sizing
     const equipped = av.equipped || {};
     for (const item of Object.values(equipped)) {
       if (!item || !item.imagePath) continue;
+      const pos = OVERLAY_POS[item.category] || OVERLAY_POS.top;
       const overlay = document.createElement('img');
       overlay.src = item.imagePath;
-      overlay.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;';
+      overlay.style.cssText = `position:absolute;left:50%;transform:translateX(-50%);` +
+        `width:${pos.width};top:${pos.top};pointer-events:none;`;
       container.appendChild(overlay);
     }
   } else {

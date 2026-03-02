@@ -1,6 +1,6 @@
 import { state } from '../state.js';
 import { navigateTo } from '../router.js';
-import { getAvatarCanvas, SKIN_TONES, HAIR_COLORS, EYE_SHAPES, MOUTH_SHAPES } from '../avatar.js';
+import { getAvatarCanvas } from '../avatar.js';
 import {
   GENDERS_3D, BODIES_3D, SKINS_3D, HAIRS_3D,
   avatarAvailable, avatarImagePath,
@@ -9,19 +9,11 @@ import {
 const AVATAR_LS_KEY = 'dq_myavatar';
 
 export const defaultAvatar = {
-  // ── 3D fields ──
   gender:  'female',
   body3d:  'slim',
   skin3d:  'fair',
   hair3d:  'undercut',
-  // ── Classic canvas fields ──
-  bodyType:   2,
-  skinTone:   '#F5CBA7',
-  hairStyle:  1,
-  hairColor:  '#3B2314',
-  eyeShape:   1,
-  mouthShape: 1,
-  equipped: { top: null, bottom: null, shoes: null, outerwear: null, accessory: null },
+  equipped: { top: null, bottom: null, shoes: null, outerwear: null },
 };
 
 export function loadMyAvatar() {
@@ -115,22 +107,13 @@ function buildColorBtn(hex, label, isSelected, isAvailable, onClick) {
   return btn;
 }
 
-// ── Tabs ──────────────────────────────────────────────────────────────────────
-
-let _activeTab = 'look';
+// ── Tab ───────────────────────────────────────────────────────────────────────
 
 function renderTab() {
   const panel = document.getElementById('ae-options');
   if (!panel) return;
   panel.innerHTML = '';
-
-  const av = state.myAvatar;
-
-  if (_activeTab === 'look') {
-    renderLookTab(panel, av);
-  } else {
-    renderClassicTab(panel, av);
-  }
+  renderLookTab(panel, state.myAvatar);
 }
 
 function section(panel, title) {
@@ -210,74 +193,13 @@ function renderLookTab(panel, av) {
   }
 }
 
-function renderClassicTab(panel, av) {
-  section(panel, 'Skin Tone');
-  const sRow = row(panel);
-  for (const c of SKIN_TONES) {
-    const btn = buildColorBtn(c, c, av.skinTone === c, true, () => {
-      av.skinTone = c;
-      saveMyAvatar(av);
-      refreshPreview();
-      renderTab();
-    });
-    sRow.appendChild(btn);
-  }
-
-  section(panel, 'Hair Colour');
-  const hcRow = row(panel);
-  for (const c of HAIR_COLORS) {
-    const btn = buildColorBtn(c, c, av.hairColor === c, true, () => {
-      av.hairColor = c;
-      saveMyAvatar(av);
-      refreshPreview();
-      renderTab();
-    });
-    hcRow.appendChild(btn);
-  }
-
-  section(panel, 'Eyes');
-  const eRow = row(panel);
-  for (let i = 1; i <= EYE_SHAPES.length; i++) {
-    const btn = buildOptionBtn(String(i), av.eyeShape === i, true, () => {
-      av.eyeShape = i;
-      saveMyAvatar(av);
-      refreshPreview();
-      renderTab();
-    });
-    eRow.appendChild(btn);
-  }
-
-  section(panel, 'Mouth');
-  const mRow = row(panel);
-  for (let i = 1; i <= MOUTH_SHAPES.length; i++) {
-    const btn = buildOptionBtn(String(i), av.mouthShape === i, true, () => {
-      av.mouthShape = i;
-      saveMyAvatar(av);
-      refreshPreview();
-      renderTab();
-    });
-    mRow.appendChild(btn);
-  }
-}
-
-function setTab(tab) {
-  _activeTab = tab;
-  document.querySelectorAll('.ae-tab').forEach(btn => {
-    const active = btn.dataset.tab === tab;
-    btn.style.background    = active ? 'var(--color-primary)' : 'var(--color-surface)';
-    btn.style.color         = active ? '#fff' : 'var(--color-text)';
-    btn.style.borderColor   = active ? 'var(--color-primary)' : 'var(--color-secondary)';
-  });
-  renderTab();
-}
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 
 let _returnTo = null;
 
 export function init(container, params) {
-  _returnTo  = (params && params.returnTo) || 'home';
-  _activeTab = 'look';
+  _returnTo = (params && params.returnTo) || 'home';
 
   const saved = loadMyAvatar();
   Object.assign(state.myAvatar, saved);
@@ -292,27 +214,12 @@ export function init(container, params) {
 
       <div id="ae-preview" style="flex:0 0 auto;height:260px;display:flex;align-items:center;justify-content:center;margin:0 auto;width:200px;"></div>
 
-      <div style="display:flex;gap:0;border-top:1px solid var(--color-surface);border-bottom:1px solid var(--color-surface);">
-        <button class="ae-tab" data-tab="look"
-          style="flex:1;padding:10px 0;font-size:14px;font-weight:600;border:none;border-bottom:3px solid var(--color-primary);cursor:pointer;background:var(--color-primary);color:#fff;transition:all 0.15s;">
-          ✨ Look
-        </button>
-        <button class="ae-tab" data-tab="classic"
-          style="flex:1;padding:10px 0;font-size:14px;font-weight:600;border:none;border-bottom:3px solid var(--color-secondary);cursor:pointer;background:var(--color-surface);color:var(--color-text);transition:all 0.15s;">
-          Classic
-        </button>
-      </div>
-
       <div id="ae-options" style="flex:1;overflow-y:auto;padding:12px 16px;"></div>
     </div>
   `;
 
   refreshPreview();
   renderTab();
-
-  document.querySelectorAll('.ae-tab').forEach(btn => {
-    btn.addEventListener('click', () => setTab(btn.dataset.tab));
-  });
 
   const goBack = () => { saveMyAvatar(state.myAvatar); navigateTo(_returnTo); };
   document.getElementById('ae-back').addEventListener('click', goBack);
