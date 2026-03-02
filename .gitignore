@@ -9,3 +9,4 @@ firebase-debug.log
 
 # Obsidian settings and local cache
 .obsidian/
+venv/
