@@ -20,13 +20,15 @@ import time
 import argparse
 from pathlib import Path
 
-try:
-    from google import genai
-    from google.genai import types
-except ImportError:
-    print("Error: google-genai not installed.")
-    print("  Run: pip3 install google-genai")
-    sys.exit(1)
+def _import_genai():
+    try:
+        from google import genai
+        from google.genai import types
+        return genai, types
+    except ImportError:
+        print("Error: google-genai not installed.")
+        print("  Run: pip3 install google-genai")
+        sys.exit(1)
 
 
 # ── Parameter Matrix ─────────────────────────────────────────────────────────
@@ -70,7 +72,7 @@ STYLE_MODIFIER = (
 )
 
 BASE_POSE = (
-    "neutral A-pose, arms relaxed slightly away from body, "
+    "subtle A-pose, arms angled 5 degrees away from the body, "
     "full body visible from head to feet, front-facing, centered, "
     "solid light-grey background (#E8E8E8), "
     "1:1 square canvas, character fills 80% of frame"
@@ -132,23 +134,24 @@ def generate_avatar(client, gender, body, skin, hair, dry_run=False):
     filename = f"{gender}_{body}_{skin}_{hair}.png"
     out_path  = OUTPUT_DIR / filename
 
-    if out_path.exists():
-        print(f"  ↩  skip  {filename}")
-        return "skip"
-
     prompt = build_prompt(gender, body, skin, hair)
 
     if dry_run:
         print(f"  📝 {filename}")
-        print(f"     {prompt[:140]}...")
+        print(f"     {prompt}")
+
+    if not dry_run and out_path.exists():
+        print(f"  ↩  skip  {filename}")
+        return "skip"
         return "ok"
 
     for attempt in range(1, RETRY_MAX + 1):
         try:
+            from google.genai import types as _types
             response = client.models.generate_content(
                 model=MODEL,
                 contents=prompt,
-                config=types.GenerateContentConfig(
+                config=_types.GenerateContentConfig(
                     response_modalities=["IMAGE"],
                 ),
             )
@@ -204,7 +207,12 @@ def main():
         print("  export GEMINI_API_KEY=your_key_here")
         sys.exit(1)
 
-    client = genai.Client(api_key=api_key) if api_key else None
+    if not args.dry_run:
+        genai, types = _import_genai()
+    else:
+        genai = types = None
+
+    client = genai.Client(api_key=api_key) if (genai and api_key) else None
 
     # Build filtered matrix
     genders = [args.gender] if args.gender else list(GENDERS)
