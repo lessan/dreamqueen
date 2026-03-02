@@ -10,3 +10,7 @@ firebase-debug.log
 # Obsidian settings and local cache
 .obsidian/
 venv/
+
+# Source PNGs from generator scripts — large, regeneratable, only WebP goes in repo
+assets/avatars/*.png
+assets/wardrobe/*.png

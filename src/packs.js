@@ -1,4 +1,5 @@
 import { loadWardrobe, addItem } from './wardrobe.js';
+import { WARDROBE_3D, AVAILABLE_WARDROBE } from './avatarImages.js';
 
 // --- Starter pack sprite generation ---
 
@@ -346,10 +347,16 @@ export function generateStarterSprites() {
 export function initStarterPack() {
   const wardrobe = loadWardrobe();
   const hasStarter = wardrobe.some(i => i.packId === 'starter');
-  if (hasStarter) return;
+  if (!hasStarter) {
+    generateStarterSprites().forEach(item => addItem(item));
+  }
 
-  const sprites = generateStarterSprites();
-  sprites.forEach(item => addItem(item));
+  // Add any generated 3D wardrobe items that aren't already in the wardrobe
+  for (const item of WARDROBE_3D) {
+    if (!AVAILABLE_WARDROBE.has(item.id)) continue;
+    if (wardrobe.some(i => i.id === item.id)) continue;
+    addItem({ ...item, source: '3d', packId: 'starter3d', createdAt: Date.now() });
+  }
 }
 
 // --- Firestore pack stubs (Phase 5) ---

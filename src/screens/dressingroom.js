@@ -2,6 +2,7 @@ import { state } from '../state.js';
 import { navigateTo } from '../router.js';
 import { getAvatarCanvas } from '../avatar.js';
 import { loadMyAvatar, saveMyAvatar } from './avatareditor.js';
+import { avatarAvailable, avatarImagePath } from '../avatarImages.js';
 import { getItems, equipItem, unequipItem, getEquipped } from '../wardrobe.js';
 import { showToast } from '../ui.js';
 import { publishOutfit } from '../gallery.js';
@@ -20,10 +21,36 @@ function refreshAvatarDisplay() {
   const container = document.getElementById('dr-avatar');
   if (!container) return;
   container.innerHTML = '';
+  container.style.position = 'relative';
+
+  const av = state.myAvatar;
+  const has3D = avatarAvailable(av.gender, av.body3d, av.skin3d, av.hair3d);
+
+  if (has3D) {
+    // 3D base avatar image
+    const base = document.createElement('img');
+    base.src = avatarImagePath(av.gender, av.body3d, av.skin3d, av.hair3d);
+    base.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block;';
+    base.onerror = () => { container.innerHTML = ''; appendCanvasFallback(container); };
+    container.appendChild(base);
+
+    // Overlay each equipped wardrobe item with an imagePath
+    const equipped = av.equipped || {};
+    for (const item of Object.values(equipped)) {
+      if (!item || !item.imagePath) continue;
+      const overlay = document.createElement('img');
+      overlay.src = item.imagePath;
+      overlay.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;';
+      container.appendChild(overlay);
+    }
+  } else {
+    appendCanvasFallback(container);
+  }
+}
+
+function appendCanvasFallback(container) {
   const cvs = getAvatarCanvas(state.myAvatar, 220, 293);
-  cvs.style.width = '100%';
-  cvs.style.height = '100%';
-  cvs.style.objectFit = 'contain';
+  cvs.style.cssText = 'width:100%;height:100%;object-fit:contain;';
   container.appendChild(cvs);
 }
 
@@ -56,13 +83,14 @@ function renderWardrobeGrid() {
       border:2px solid ${isEquipped ? 'var(--color-accent)' : 'transparent'};
     `;
 
-    // Item thumbnail — show item sprite on small canvas
+    // Item thumbnail
     const thumb = document.createElement('div');
     thumb.style.cssText = 'width:80px;height:80px;display:flex;align-items:center;justify-content:center;';
-    if (item.imageDataURL) {
+    const imgSrc = item.imagePath || item.imageDataURL;
+    if (imgSrc) {
       const img = document.createElement('img');
-      img.src = item.imageDataURL;
-      img.style.cssText = 'width:100%;height:100%;object-fit:contain;image-rendering:pixelated;';
+      img.src = imgSrc;
+      img.style.cssText = 'width:100%;height:100%;object-fit:contain;';
       img.alt = item.name;
       thumb.appendChild(img);
     }
@@ -127,8 +155,16 @@ function renderOtherPlayers() {
     const p = state.roomPlayers[slug];
     const card = document.createElement('div');
     card.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0;';
-    const thumb = getAvatarCanvas(p.avatarState || state.myAvatar, 80, 107);
-    thumb.style.cssText = 'width:60px;height:80px;object-fit:contain;border-radius:8px;background:var(--color-surface);';
+    const pav = p.avatarState || state.myAvatar;
+    const thumbStyle = 'width:60px;height:80px;object-fit:contain;border-radius:8px;background:var(--color-surface);';
+    let thumb;
+    if (avatarAvailable(pav.gender, pav.body3d, pav.skin3d, pav.hair3d)) {
+      thumb = document.createElement('img');
+      thumb.src = avatarImagePath(pav.gender, pav.body3d, pav.skin3d, pav.hair3d);
+    } else {
+      thumb = getAvatarCanvas(pav, 80, 107);
+    }
+    thumb.style.cssText = thumbStyle;
     card.appendChild(thumb);
     const nameEl = document.createElement('span');
     nameEl.textContent = p.codename || slug;
