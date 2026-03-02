@@ -43,7 +43,15 @@ export const AVAILABLE_AVATARS = new Set([
 export const AVAILABLE_WARDROBE = new Set([
   'tshirt_white',
   'hoodie_red',
+  'top_pink_crop',
   'jacket_black_leather',
+  'jacket_olive_bomber',
+  'coat_camel_trench',
+  'chinos_navy',
+  'jeans_distressed',
+  'sweatpants_grey',
+  'skirt_pink_pleated',
+  'dress_floral_sundress',
 ]);
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -66,7 +74,19 @@ export function wardrobePath(id) {
 
 // ── 3D wardrobe starter items ─────────────────────────────────────────────────
 export const WARDROBE_3D = [
-  { id: 'tshirt_white',         name: 'White T-Shirt',       category: 'top',       imagePath: wardrobePath('tshirt_white') },
-  { id: 'hoodie_red',           name: 'Red Hoodie',           category: 'top',       imagePath: wardrobePath('hoodie_red') },
-  { id: 'jacket_black_leather', name: 'Black Leather Jacket', category: 'outerwear', imagePath: wardrobePath('jacket_black_leather') },
+  // Tops
+  { id: 'tshirt_white',         name: 'White T-Shirt',        category: 'top',       imagePath: wardrobePath('tshirt_white') },
+  { id: 'hoodie_red',           name: 'Red Hoodie',            category: 'top',       imagePath: wardrobePath('hoodie_red') },
+  { id: 'top_pink_crop',        name: 'Pink Crop Top',         category: 'top',       imagePath: wardrobePath('top_pink_crop') },
+  // Outerwear
+  { id: 'jacket_black_leather', name: 'Black Leather Jacket',  category: 'outerwear', imagePath: wardrobePath('jacket_black_leather') },
+  { id: 'jacket_olive_bomber',  name: 'Olive Bomber Jacket',   category: 'outerwear', imagePath: wardrobePath('jacket_olive_bomber') },
+  { id: 'coat_camel_trench',    name: 'Camel Trench Coat',     category: 'outerwear', imagePath: wardrobePath('coat_camel_trench') },
+  // Bottoms
+  { id: 'chinos_navy',          name: 'Navy Chinos',           category: 'bottom',    imagePath: wardrobePath('chinos_navy') },
+  { id: 'jeans_distressed',     name: 'Distressed Jeans',      category: 'bottom',    imagePath: wardrobePath('jeans_distressed') },
+  { id: 'sweatpants_grey',      name: 'Grey Sweatpants',       category: 'bottom',    imagePath: wardrobePath('sweatpants_grey') },
+  { id: 'skirt_pink_pleated',   name: 'Pink Pleated Skirt',    category: 'bottom',    imagePath: wardrobePath('skirt_pink_pleated') },
+  // Dresses
+  { id: 'dress_floral_sundress',name: 'Floral Sundress',       category: 'top',       imagePath: wardrobePath('dress_floral_sundress') },
 ];
